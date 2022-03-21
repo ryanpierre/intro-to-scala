@@ -1,5 +1,11 @@
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
+//import org.scalamock.scalatest.MockFactory
+//class FakeClock(fixed: DateTime) extends Clock {
+//  def now() = fixed.toInstant
+//
+//  def dateNow() = fixed
+//}
 
 class ReceiptPrinterSpec extends AnyWordSpec with Matchers {
   val coffeeConnectionCafe = new CafeDetails(
@@ -24,9 +30,23 @@ class ReceiptPrinterSpec extends AnyWordSpec with Matchers {
       "Muffin Of The Day" -> 4.55
       )
       )
-val printer = new ReceiptPrinter(
+
+  import java.time.Clock
+  import java.time.Instant
+  import java.time.LocalDateTime
+  import java.time.ZoneId
+
+  val clock: Clock = Clock.fixed(Instant.parse("2022-03-18T13:00:30.00Z"), ZoneId.of("UTC"))
+  val dateTimeExpected = "2014-12-22T10:15:30"
+
+  val dateTime: LocalDateTime = LocalDateTime.now(clock)
+
+//  implicit val fakeClock = new FakeClock(
+//    new DateTime(2022, 3, 18, 13, 0, DateTimeZone.UTC)
+//  )
+  val printer = new ReceiptPrinter(
   coffeeConnectionCafe
-)
+  )
       "A ReceiptPrinter" should {
         "format a receipt" which {
           "contains the name of the cafe" in {
@@ -37,6 +57,9 @@ val printer = new ReceiptPrinter(
           }
           "contains the phone of the cafe" in {
             printer.receipt should include ("16503600708")
+          }
+          "contains the date and time the receipt was created" in {
+            printer.receipt should include ("Date and Time: 2022-03-18 at 13:00")
           }
         }
       }
