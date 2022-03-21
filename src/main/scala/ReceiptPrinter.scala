@@ -22,7 +22,8 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map())
   def receipt: String = {
     cafe.shopName + "\n" +
     cafe.address + "\n" +
-    cafe.phone
+    cafe.phone + "\n" +
+    "Date and Time: 2022-03-18 at 13:00"
   }
   println(receipt)
 }
