@@ -1,13 +1,29 @@
 class Agenda (val meetings: List[Meeting]) {
 
+//  def getDay(day: String): List[Any] = {
+//    val meetingsForTheDay = meetings.filter(_.day == day)
+//    meetingsForTheDay
+//  }
+
+//  def getAMMeetings(): List[Any] = {
+//    val amMeetings = List[Any].map( meeting => meeting.time.contains("am"))
+//    amMeetings
+//  }
   def printDaySchedule(day: String): Unit = {
     val meetingsForTheDay = meetings.filter(_.day == day)
     println(s"$day:")
     if (meetingsForTheDay.isEmpty) {
       println(s"  There are no meetings on ${day}")
     }
-    for (meeting <- meetingsForTheDay)
-      println(s"  ${meeting.time}: ${meeting.name}")
+    for (meeting <- meetingsForTheDay) {
+      if (meeting.time.contains("am")) {
+        println(s"  ${meeting.day} morning:")
+        println(s"  ${meeting.time}: ${meeting.name} \n")
+      } else {
+        println(s"  ${meeting.day} afternoon:")
+        println(s"  ${meeting.time}: ${meeting.name}")
+      }
+    }
   }
 
 }
