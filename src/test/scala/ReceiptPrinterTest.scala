@@ -1,11 +1,6 @@
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 //import org.scalamock.scalatest.MockFactory
-//class FakeClock(fixed: DateTime) extends Clock {
-//  def now() = fixed.toInstant
-//
-//  def dateNow() = fixed
-//}
 
 class ReceiptPrinterSpec extends AnyWordSpec with Matchers {
   val coffeeConnectionCafe = new CafeDetails(
@@ -31,16 +26,20 @@ class ReceiptPrinterSpec extends AnyWordSpec with Matchers {
       )
       )
 
-  import java.time.Clock
-  import java.time.Instant
-  import java.time.LocalDateTime
-  import java.time.ZoneId
+//  def currentTime: String = {
+//    val clock: Clock = Clock.fixed(Instant.parse("2022-03-18T13:00:30.00Z"), ZoneId.of("UTC"))
+//    val dateTimeExpected = "2022-03-18T13:00:30"
+//    val t = LocalDateTime.now(clock)
+//    val f = DateTimeFormatter.ofPattern("MMM dd, yyyy h:mm a")
+//    f.format(t)
+//  }
 
-  val clock: Clock = Clock.fixed(Instant.parse("2022-03-18T13:00:30.00Z"), ZoneId.of("UTC"))
-  val dateTimeExpected = "2014-12-22T10:15:30"
-
-  val dateTime: LocalDateTime = LocalDateTime.now(clock)
-
+//  val f = DateTimeFormatter.ofPattern("MMM dd, yyyy h:mm a")
+//  val dateTime: LocalDateTime = LocalDateTime.now(clock)
+//
+//      var currentTime = new Date(2022, 3, 18, 13, 0, 31 );
+//      println(currentTime)
+//
 //  implicit val fakeClock = new FakeClock(
 //    new DateTime(2022, 3, 18, 13, 0, DateTimeZone.UTC)
 //  )
@@ -58,9 +57,9 @@ class ReceiptPrinterSpec extends AnyWordSpec with Matchers {
           "contains the phone of the cafe" in {
             printer.receipt should include ("16503600708")
           }
-          "contains the date and time the receipt was created" in {
-            printer.receipt should include ("Date and Time: 2022-03-18 at 13:00")
-          }
+//          "contains the date and time the receipt was created" in {
+//            printer.receipt should include ("Date and Time: Mar 18, 2022 1:00 PM")
+//          }
         }
       }
 }
