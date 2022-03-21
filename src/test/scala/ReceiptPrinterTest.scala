@@ -35,6 +35,9 @@ val printer = new ReceiptPrinter(
           "contains the address of the cafe" in {
             printer.receipt should include ("123 Lakeside Way")
           }
+          "contains the phone of the cafe" in {
+            printer.receipt should include ("16503600708")
+          }
         }
       }
 }
