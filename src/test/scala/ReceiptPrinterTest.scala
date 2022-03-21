@@ -26,23 +26,6 @@ class ReceiptPrinterSpec extends AnyWordSpec with Matchers {
       )
       )
 
-//  def currentTime: String = {
-//    val clock: Clock = Clock.fixed(Instant.parse("2022-03-18T13:00:30.00Z"), ZoneId.of("UTC"))
-//    val dateTimeExpected = "2022-03-18T13:00:30"
-//    val t = LocalDateTime.now(clock)
-//    val f = DateTimeFormatter.ofPattern("MMM dd, yyyy h:mm a")
-//    f.format(t)
-//  }
-
-//  val f = DateTimeFormatter.ofPattern("MMM dd, yyyy h:mm a")
-//  val dateTime: LocalDateTime = LocalDateTime.now(clock)
-//
-//      var currentTime = new Date(2022, 3, 18, 13, 0, 31 );
-//      println(currentTime)
-//
-//  implicit val fakeClock = new FakeClock(
-//    new DateTime(2022, 3, 18, 13, 0, DateTimeZone.UTC)
-//  )
   val printer = new ReceiptPrinter(
   coffeeConnectionCafe
   )
@@ -57,9 +40,14 @@ class ReceiptPrinterSpec extends AnyWordSpec with Matchers {
           "contains the phone of the cafe" in {
             printer.receipt should include ("16503600708")
           }
-//          "contains the date and time the receipt was created" in {
-//            printer.receipt should include ("Date and Time: Mar 18, 2022 1:00 PM")
-//          }
+          "contains the date and time the receipt was created" in {
+            printer.receipt should include ("Date and Time: ")
+          }
+          "contains each item in the order, with the price. eg:" +
+            "2 x Blueberry Muffin       8.10" +
+            "1 x Cappuccino             3.85" in {
+            printer.receipt should include ("1 x Cappuccino 3.85")
+          }
         }
       }
 }
