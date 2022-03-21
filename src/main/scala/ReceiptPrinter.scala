@@ -21,6 +21,6 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map())
    */
   def receipt: String = {
     cafe.shopName +
-    "123 Lakeside Way"
+    cafe.address
   }
 }
