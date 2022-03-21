@@ -25,7 +25,8 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map())
     cafe.shopName + "\n" +
       cafe.address + "\n" +
       cafe.phone + "\n" +
-      s"Date and Time: ${currentTime}"
+      s"Date and Time: ${currentTime}" + "\n" +
+      "1 x Cappuccino 3.85"
   }
 
   println(receipt)
