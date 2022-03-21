@@ -20,6 +20,7 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map())
    * - the VAT (20% of total price)
    */
   def receipt: String = {
-    cafe.shopName
+    cafe.shopName +
+    "123 Lakeside Way"
   }
 }
