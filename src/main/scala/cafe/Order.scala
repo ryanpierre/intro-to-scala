@@ -7,15 +7,18 @@ class Order(val cafe: CafeDetails, var orderedItems: ArrayBuffer[OrderItem] = ne
   //returns order object:
   // "item name"  "qty"  "total item price"
   def findItemPrice(orderItem: OrderItem): Double = {
-    // look up corresponding menu item for OrderItem name (key)
-    // return the price/value
-    println(cafe.menu(orderItem.name))
       return cafe.menu(orderItem.name)
   }
 
   def assignItemPrices: Unit ={
     for (orderedItem <- orderedItems){
       orderedItem.priceEach = findItemPrice(orderedItem)
+    }
+  }
+
+  def totalItemPrice: Unit = {
+    for (orderedItem <- orderedItems){
+      orderedItem.totalItemPrice = (orderedItem.priceEach * orderedItem.quantity)
     }
   }
 }
