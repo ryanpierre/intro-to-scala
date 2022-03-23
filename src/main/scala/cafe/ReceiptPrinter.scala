@@ -28,7 +28,7 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Order) {
     cafe.phone + "\n" +
     s"Date and Time: ${currentTime}" + "\n" +
     printOrderItems + "\n" +
-    (f"Order Total: ${formatter.format(order.orderTotal)}%16s")
+    (f"Item Total(s): ${formatter.format(order.orderTotal)}%14s")
   }
 
   var printableReceipt: String = receipt()
