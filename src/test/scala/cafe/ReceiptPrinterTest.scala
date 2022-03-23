@@ -1,10 +1,12 @@
+package cafe
+
 import org.scalamock.scalatest.MockFactory
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 
-class ReceiptPrinterSpec extends AnyWordSpec with Matchers with MockFactory {
-  val coffeeConnectionCafe = new CafeDetails(
+class ReceiptPrinterTest extends AnyWordSpec with Matchers with MockFactory {
+  var coffeeConnectionCafe = new CafeDetails(
     "The Coffee Connection",
     "123 Lakeside Way",
     "16503600708",
@@ -26,11 +28,9 @@ class ReceiptPrinterSpec extends AnyWordSpec with Matchers with MockFactory {
       "Muffin Of The Day" -> 4.55
     )
   )
-
-  val printer = new ReceiptPrinter(
-    coffeeConnectionCafe
-  )
-  "A ReceiptPrinter" should {
+//the test
+  val printer = new ReceiptPrinter(coffeeConnectionCafe)
+  "A cafe.ReceiptPrinter" should {
     "format a receipt" which {
       "contains the name of the cafe" in {
         printer.receipt should include("The Coffee Connection")

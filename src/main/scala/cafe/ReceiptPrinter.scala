@@ -1,18 +1,14 @@
+package cafe
+
+
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-
-class CafeDetails (
-                    val shopName: String,
-                    val address: String,
-                    val phone: String,
-                    val prices: Map[String, Double]
-                  )
 
 class ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map()) {
 
   /**
    * This method should return a multiline string
-   * representing a ReceiptPrinter receipt that should show
+   * representing a cafe.ReceiptPrinter receipt that should show
    * - shop name, address, phone number
    * - the date and time the receipt was created
    * - each item in the order, with the price. eg:
@@ -21,7 +17,7 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map())
    * - the total price
    * - the VAT (20% of total price)
    */
-  def receipt: String = {
+  def receipt(): String = {
     cafe.shopName + "\n" +
       cafe.address + "\n" +
       cafe.phone + "\n" +
@@ -29,8 +25,10 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map())
       "1 x Cappuccino 3.85"
   }
 
-  println(receipt)
+  var returnValue: String = receipt()
+  println(returnValue)
   println(currentTime)
+
 
   private
   def currentTime: String = {
@@ -38,4 +36,7 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map())
     val f = DateTimeFormatter.ofPattern("MMM dd, yyyy h:mm a")
     f.format(t)
   }
+
+
+
 }
