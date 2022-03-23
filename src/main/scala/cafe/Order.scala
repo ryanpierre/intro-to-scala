@@ -12,4 +12,10 @@ class Order(val cafe: CafeDetails, var orderedItems: ArrayBuffer[OrderItem] = ne
     println(cafe.menu(orderItem.name))
       return cafe.menu(orderItem.name)
   }
+
+  def assignItemPrices: Unit ={
+    for (orderedItem <- orderedItems){
+      orderedItem.priceEach = findItemPrice(orderedItem)
+    }
+  }
 }

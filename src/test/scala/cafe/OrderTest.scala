@@ -32,16 +32,16 @@ class OrderTest extends AnyWordSpec with Matchers with MockFactory{
   )
 
   "An order" should {
+    var myOrder = new Order(coffeeConnectionCafe)
+    //        val mockItems = ArrayBuffer(item1)
+    myOrder.orderedItems.append(new OrderItem("Cappuccino", 1))
+    myOrder.orderedItems.append(new OrderItem("Blueberry Muffin", 2))
     "format an order" which {
-      "contains at least one item" in {
-        var myOrder = new Order(coffeeConnectionCafe)
-//        val mockItems = ArrayBuffer(item1)
-        myOrder.orderedItems.append(new OrderItem("Cappuccino", 1))
-        println(myOrder.orderedItems)
-
-
-          myOrder.findItemPrice(myOrder.orderedItems(0)) should be(3.85)
-//        println(myItem.name)
+      "contains the correct individual price for 1 item" in {
+        myOrder.findItemPrice(myOrder.orderedItems(0)) should be(3.85)
+      }
+      "contains the correct price of items that have a quantity > 1" in {
+        myOrder.orderedItems(1).total should equal(8.10)
         //TODO change lines 23-24 so that the order object is iterated
         //for each item in items
           //test that the name is right
