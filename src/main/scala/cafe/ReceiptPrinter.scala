@@ -28,7 +28,9 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Order) {
     cafe.phone + "\n" +
     s"Date and Time: ${currentTime}" + "\n" +
     printOrderItems + "\n" +
-    (f"Item Total(s): ${formatter.format(order.orderTotal)}%14s")
+    (f"Item Total(s): ${formatter.format(order.orderTotal)}%14s") + "\n" +
+      f"+ VAT: ${formatter.format(calculateVAT)}%22s"
+
   }
 
   var printableReceipt: String = receipt()
@@ -48,6 +50,10 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Order) {
       stringBuilder.append(f"${orderItem.quantity} x ${orderItem.name}%-21s${orderItem.totalItemPrice}%1.2f \n")
     }
     return stringBuilder.toString()
+  }
+
+  def calculateVAT: Double = {
+    order.orderTotal * 0.2
   }
 
 }
