@@ -1,3 +1,5 @@
+import java.util.{Currency, Locale}
+
 val myList = List(1, 1, 2, 5, 3, 8)
 def findLast(givenList: List[Int]): Int = {
   givenList.last
@@ -15,3 +17,10 @@ def findNthElement(givenList: List[Int], nthElement: Int): Int = {
   givenList.apply(nthElement)
 }
 findNthElement(myList, 3)
+
+
+val formatter = java.text.NumberFormat.getCurrencyInstance
+val gb = Currency.getInstance(new Locale("gb", "GB"))
+val total = 11.85
+formatter.setCurrency(gb)
+formatter.format(total)

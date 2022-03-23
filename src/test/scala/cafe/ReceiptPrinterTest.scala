@@ -51,10 +51,10 @@ class ReceiptPrinterTest extends AnyWordSpec with Matchers with MockFactory {
       "contains each item in the order, with the price. eg:" +
         "2 x Blueberry Muffin       8.10" +
         "1 x Cappuccino             3.85" in {
-        printer.receipt should include("1 x Cappuccino             3.85")
+        printer.receipt should include("1 x Cappuccino           3.85")
       }
       "contains an order total" in {
-        printer.receipt should include("Total: £ 11.95")
+        printer.receipt should include("Order Total: £11.95")
       }
     }
   }

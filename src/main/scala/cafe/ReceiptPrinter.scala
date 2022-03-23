@@ -1,8 +1,8 @@
 package cafe
 
-
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.{Currency, Locale}
 
 class ReceiptPrinter(val cafe: CafeDetails, var order: Order) {
 
@@ -17,17 +17,22 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Order) {
    * - the total price
    * - the VAT (20% of total price)
    */
+
+  val formatter = java.text.NumberFormat.getCurrencyInstance
+  val gb = Currency.getInstance(new Locale("gb", "GB"))
+  formatter.setCurrency(gb)
+
   def receipt(): String = {
     cafe.shopName + "\n" +
     cafe.address + "\n" +
     cafe.phone + "\n" +
     s"Date and Time: ${currentTime}" + "\n" +
-    printOrderItems
+    printOrderItems + "\n" +
+    (f"Order Total: ${formatter.format(order.orderTotal)}%16s")
   }
 
-  var returnValue: String = receipt()
-  println(returnValue)
-  println(currentTime)
+  var printableReceipt: String = receipt()
+  println(printableReceipt)
 
 
   private
@@ -44,6 +49,5 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Order) {
     }
     return stringBuilder.toString()
   }
-
 
 }
