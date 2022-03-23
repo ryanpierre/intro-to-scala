@@ -28,8 +28,12 @@ class ReceiptPrinterTest extends AnyWordSpec with Matchers with MockFactory {
       "Muffin Of The Day" -> 4.55
     )
   )
+  var myOrder = new Order(coffeeConnectionCafe)
+  myOrder.orderedItems.append(new OrderItem("Cappuccino", 1))
+  myOrder.orderedItems.append(new OrderItem("Blueberry Muffin", 2))
+  myOrder.processOrder
 //the test
-  val printer = new ReceiptPrinter(coffeeConnectionCafe)
+  val printer = new ReceiptPrinter(coffeeConnectionCafe, myOrder)
   "A cafe.ReceiptPrinter" should {
     "format a receipt" which {
       "contains the name of the cafe" in {

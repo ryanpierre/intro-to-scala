@@ -4,7 +4,7 @@ package cafe
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map()) {
+class ReceiptPrinter(val cafe: CafeDetails, var order: Order) {
 
   /**
    * This method should return a multiline string
@@ -19,10 +19,10 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map())
    */
   def receipt(): String = {
     cafe.shopName + "\n" +
-      cafe.address + "\n" +
-      cafe.phone + "\n" +
-      s"Date and Time: ${currentTime}" + "\n" +
-      "1 x Cappuccino 3.85"
+    cafe.address + "\n" +
+    cafe.phone + "\n" +
+    s"Date and Time: ${currentTime}" + "\n" +
+    printOrderItems
   }
 
   var returnValue: String = receipt()
@@ -37,6 +37,13 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map())
     f.format(t)
   }
 
+  def printOrderItems: String = {
+    val stringBuilder = new StringBuilder()
+    for (orderItem <- order.orderedItems) {
+      stringBuilder.append(f"${orderItem.quantity} x ${orderItem.name}%-21s${orderItem.totalItemPrice}%1.2f \n")
+    }
+    return stringBuilder.toString()
+  }
 
 
 }

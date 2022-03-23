@@ -4,8 +4,12 @@ import scala.collection.mutable.ArrayBuffer
 
 
 class Order(val cafe: CafeDetails, var orderedItems: ArrayBuffer[OrderItem] = new ArrayBuffer[OrderItem]()) {
-  //returns order object:
-  // "item name"  "qty"  "total item price"
+  def processOrder: Unit = {
+    totalItemPrice
+  }
+
+  private
+
   def findItemPrice(orderItem: OrderItem): Double = {
       return cafe.menu(orderItem.name)
   }
@@ -17,6 +21,7 @@ class Order(val cafe: CafeDetails, var orderedItems: ArrayBuffer[OrderItem] = ne
   }
 
   def totalItemPrice: Unit = {
+    assignItemPrices
     for (orderedItem <- orderedItems){
       orderedItem.totalItemPrice = (orderedItem.priceEach * orderedItem.quantity)
     }
