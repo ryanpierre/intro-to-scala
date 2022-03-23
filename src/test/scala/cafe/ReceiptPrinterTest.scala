@@ -60,7 +60,7 @@ class ReceiptPrinterTest extends AnyWordSpec with Matchers with MockFactory {
         printer.receipt should include("+ VAT:                  £2.39")
       }
       "contains an Order total" in {
-        printer.receipt should include("Order Totals:          £14.34")
+        printer.receipt should include("Order Total:           £14.34")
       }
     }
   }
