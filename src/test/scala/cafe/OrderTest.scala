@@ -43,6 +43,9 @@ class OrderTest extends AnyWordSpec with Matchers with MockFactory{
       "contains the correct price of items that have a quantity > 1" in {
         myOrder.orderedItems(1).totalItemPrice should equal(8.10)
       }
+      "totals the price of all items" in {
+        myOrder.orderTotal should equal(11.95)
+      }
     }
   }
 
