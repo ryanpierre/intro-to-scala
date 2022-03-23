@@ -36,7 +36,7 @@ class OrderTest extends AnyWordSpec with Matchers with MockFactory{
       "contains at least one item" in {
         var myOrder = new Order(coffeeConnectionCafe)
 //        val mockItems = ArrayBuffer(item1)
-        myOrder.orderedItems.append(new OrderItem("Cappucino", 1))
+        myOrder.orderedItems.append(new OrderItem("Cappuccino", 1))
         println(myOrder.orderedItems)
 
 
