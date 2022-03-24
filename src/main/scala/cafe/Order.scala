@@ -3,9 +3,8 @@ package cafe
 import scala.collection.mutable.ArrayBuffer
 
 
-class Order(val cafe: CafeDetails, var orderedItems: ArrayBuffer[OrderItem] = new ArrayBuffer[OrderItem](), var orderTotal: Double = 0.00) {
+class Order(val cafe: CafeDetails, var orderedItems: ArrayBuffer[OrderItem] = new ArrayBuffer[OrderItem](), var itemsTotal: Double = 0.00, var totalVAT: Double = 0.00, var orderTotal: Double = 0.00) {
   def processOrder: Unit = {
-    totalItemPrice
     processOrderTotal
   }
 
@@ -28,10 +27,23 @@ class Order(val cafe: CafeDetails, var orderedItems: ArrayBuffer[OrderItem] = ne
     }
   }
 
-  def processOrderTotal: Double = {
+  def processItemsTotal: Double = {
+    totalItemPrice
     for (orderedItem <- orderedItems) {
-      orderTotal = orderedItem.totalItemPrice + orderTotal
+      itemsTotal = orderedItem.totalItemPrice + itemsTotal
     }
+    return itemsTotal
+  }
+
+  def processVATTotal: Double = {
+    processItemsTotal
+    totalVAT = itemsTotal * 0.2
+    return totalVAT
+  }
+
+  def processOrderTotal: Double = {
+    processVATTotal
+    orderTotal = itemsTotal + totalVAT
     return orderTotal
   }
 }
