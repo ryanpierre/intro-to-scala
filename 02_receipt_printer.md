@@ -84,7 +84,7 @@ Can you improve this code to make it more functional?
 
 For this challenge you'll have to:
 [ ] Create a new Scala project, adding a testing library as a dependency
-[ ] Create a ReceiptPrinter class (see skeleton code below)
+[ ] Create a cafe.ReceiptPrinter class (see skeleton code below)
 [ ] Use TDD to write the code of the receipt method
 [ ] Create private methods to extract some logic from the receipt method
 
@@ -99,7 +99,7 @@ Use the resources provided and your own research to get to a working solution.
 
 Here are some skeleton files:
 ```scala
-// src/main/scala/ReceiptPrinter.scala
+// src/main/scala/cafe.ReceiptPrinter.scala
 class CafeDetails (
   val shopName: String,
   val address: String,
@@ -107,11 +107,11 @@ class CafeDetails (
   val prices: Map[String, Double]
 )
 
-class ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map()) {
+class cafe.ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map()) {
 
   /**
    * This method should return a multiline string
-   * representing a ReceiptPrinter receipt that should show
+   * representing a cafe.ReceiptPrinter receipt that should show
    * - shop name, address, phone number
    * - the date and time the receipt was created
    * - each item in the order, with the price. eg:
@@ -127,11 +127,12 @@ class ReceiptPrinter(val cafe: CafeDetails, var order: Map[String, Int] = Map())
 ```
 
 ```scala
-// src/test/scala/ReceiptPrinterTest.scala
+// src/test/scala/cafe.ReceiptPrinterTest.scala
+import cafe.ReceiptPrinter
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-class ReceiptPrinterSpec extends AnyWordSpec with Matchers {
+class cafe.ReceiptPrinterSpec extends AnyWordSpec with Matchers {
   val coffeeConnectionCafe = new CafeDetails(
     "The Coffee Connection",
     "123 Lakeside Way",
@@ -155,7 +156,7 @@ class ReceiptPrinterSpec extends AnyWordSpec with Matchers {
     )
   )
 
-  "A ReceiptPrinter" should {
+  "A cafe.ReceiptPrinter" should {
     "format a receipt" which {
       "contains the name of the cafe" in {
         val printer = new ReceiptPrinter(
